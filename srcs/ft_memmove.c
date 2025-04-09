@@ -1,27 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 00:05:49 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/09 19:11:00 by avieira-         ###   ########.fr       */
+/*   Created: 2025/04/09 17:28:18 by avieira-          #+#    #+#             */
+/*   Updated: 2025/04/09 18:10:21 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-
-void	ft_bzero(void *s, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t			i;
-	unsigned char	*b;
-
-	i = 0;
-	b = (unsigned char *) s;
-	while (i < n)
-	{
-		b[i] = '\0';
-		i++;
-	}
 }

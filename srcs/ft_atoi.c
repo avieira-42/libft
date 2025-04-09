@@ -1,27 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 00:05:49 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/09 19:11:00 by avieira-         ###   ########.fr       */
+/*   Created: 2025/04/09 19:12:56 by avieira-          #+#    #+#             */
+/*   Updated: 2025/04/09 19:41:33 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
-
-void	ft_bzero(void *s, size_t n)
+int	ft_atoi(const char *nptr)
 {
-	size_t			i;
-	unsigned char	*b;
+	int				s;
+	int				nb;
+	unsigned int	i;
 
+	s = 1;
+	nb = 0;
 	i = 0;
-	b = (unsigned char *) s;
-	while (i < n)
+	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
+		i++;
+	if (nptr[i] == '-')
 	{
-		b[i] = '\0';
+		s = -1;
 		i++;
 	}
+	else if (nptr[i] == '+')
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		nb = nptr[i] - '0' + nb * 10;
+		i++;
+	}
+	return (nb * s);
 }
+/*
+#include <stdio.h>
+int	main(int argc, char **argv)
+{
+	printf("%i", ft_atoi(argv[1]));
+}*/

@@ -1,27 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 00:05:49 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/09 19:11:00 by avieira-         ###   ########.fr       */
+/*   Created: 2025/04/09 15:06:26 by avieira-          #+#    #+#             */
+/*   Updated: 2025/04/09 17:47:51 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t			i;
-	unsigned char	*b;
+	size_t				i;
+	unsigned char		*d;
+	const unsigned char	*s;
 
 	i = 0;
-	b = (unsigned char *) s;
+	s = (unsigned char *) src;
+	d = (unsigned char *) dest;
 	while (i < n)
 	{
-		b[i] = '\0';
+		d[i] = s[i];
 		i++;
 	}
+	return (dest);
 }
+/*
+#include <stdio.h>
+int	main(void)
+{
+	int	i = 0;
+	size_t n;
+	unsigned int		src[] = {16, 4, 21};
+	unsigned int		dest[10];
+	
+	n = sizeof(int) * 3;
+	ft_memcpy(dest, src, n);
+	while (i < 3)
+	{	
+		printf("%i\n", dest[i]);
+		i++;
+	}
+}*/
