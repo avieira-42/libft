@@ -1,34 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 00:04:01 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/11 17:18:47 by avieira-         ###   ########.fr       */
+/*   Created: 2025/04/11 17:27:28 by avieira-          #+#    #+#             */
+/*   Updated: 2025/04/11 17:40:19 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strrchr(const char *s, int c)
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*ptr;
-
-	ptr = (char *) s + ft_strlen(s);
-	while (ptr != (char *) s - 1)
-	{	
-		if (*ptr == c)
-			return (ptr);
-		ptr--;
-	}
-	return (0);
+	size_t	
 }
-/*
-#include <stdio.h>
-
-int	main(int argc, char **argv)
-{
-	printf("%s", ft_strrchr(argv[1], 'r'));
-}*/
