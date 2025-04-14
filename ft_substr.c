@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 17:27:28 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/14 14:31:05 by avieira-         ###   ########.fr       */
+/*   Created: 2025/04/14 18:52:15 by avieira-          #+#    #+#             */
+/*   Updated: 2025/04/14 20:07:43 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	unsigned char	*ptr1;
-	unsigned char	*ptr2;
+	size_t			i;
+	size_t			len_s;
+	unsigned char	*str;
+	char			*substr;
 
-	ptr1 = (unsigned char *) s1;
-	ptr2 = (unsigned char *) s2;
-	while ((*ptr1 || *ptr2) && n--)
+	i = 0;
+	len_s = ft_strlen(s);
+	str = (unsigned char *) s;
+	substr = malloc (len +1);
+	if (!substr)
+		return (0);
+	while (i < len && i < len_s - 1)
 	{
-		if (*ptr1 != *ptr2)
-			return (*ptr1 - *ptr2);
-		ptr1++;
-		ptr2++;
+		substr[i] = s[start + i];
+		i++;
 	}
-	return (0);
+	substr[i] = '\0';
+	return (substr);
 }
