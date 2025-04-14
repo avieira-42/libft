@@ -1,79 +1,78 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoa.c                                             :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesusoncrack <marvin@42.fr>                +#+  +:+       +#+        */
+/*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 02:04:46 by jesusoncrack      #+#    #+#             */
-/*   Updated: 2025/03/12 02:07:40 by jesusoncrack     ###   ########.fr       */
+/*   Created: 2025/04/14 09:18:50 by avieira-          #+#    #+#             */
+/*   Updated: 2025/04/14 09:43:01 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 
-int	calculate_length(int nb)
+static int	calculate_length(int n)
 {
 	int	i;
-	int	value;
 
-	value = 0;
-	if (nb == -2147483648)
-		return (11);
-	if (nb == 0)
-		return (1);
-	if (nb < 0)
-	{
-		nb = nb * -1;
-		value = 1;
-	}
 	i = 0;
-	while (nb > 0)
+	if (n == -2147483648)
+		return (11);
+	if (n == 0)
+		return (1);
+	if (n < 0)
 	{
-		nb = nb / 10;
+		n = n * -1;
 		i++;
 	}
-	return (i + value);
+	while (n > 0)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
 }
 
-char	*populate_array(char *array, int i, int nb)
+static char	*populate_array(char *array, int i, int n)
 {
 	char	c;
 
-	if (nb > 9)
+	if (n > 9)
 	{
-		populate_array(array, i - 1, nb / 10);
-		nb = nb % 10;
+		populate_array(array, i - 1, n / 10);
+		n = n % 10;
 	}
-	c = '0' + nb;
+	c = '0' + n;
 	array[i] = c;
 	return (array);
 }
 
-char	*ft_itoa(int nb)
+char	*ft_itoa(int n)
 {
 	int		length;
 	char	*array;
 
-	length = calculate_length(nb);
-	if (nb < 0)
-		array = malloc(sizeof(char) * (length + 1));
-	if (nb == -2147483648)
+	length = calculate_length(n);
+	array = malloc(sizeof(char) * (length + 1));
+	if (array == NULL)
+		return (NULL);
+	if (n == -2147483648)
 	{
-		nb = nb + 2000000000;
+		n = n + 2000000000;
 		array[1] = '2';
 	}
-	if (nb < 0)
+	if (n < 0)
 	{
-		nb = nb * -1;
+		n = n * -1;
 		array[0] = '-';
 	}
 	array[length] = '\0';
-	populate_array(array, length - 1, nb);
+	populate_array(array, length - 1, n);
 	return (array);
 }
-
+/*
+#include <stdio.h>
 int	main(int argc, char *argv[])
 {
 	int		i;
@@ -85,4 +84,4 @@ int	main(int argc, char *argv[])
 		array = ft_itoa(i);
 		printf("%s\n", array);
 	}
-}
+}*/
