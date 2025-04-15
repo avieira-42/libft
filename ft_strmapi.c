@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 12:41:32 by jesusoncrac       #+#    #+#             */
-/*   Updated: 2025/04/15 15:22:13 by jesusoncrac      ###   ########.fr       */
+/*   Created: 2025/04/15 20:38:15 by jesusoncrac       #+#    #+#             */
+/*   Updated: 2025/04/15 21:08:40 by jesusoncrac      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	ft_encrypt(unsigned int i, char c)
 {
-	size_t		start;
-	size_t		end;
+	return (c + i);
+}
 
-	end = ft_strlen(s1);
-	start = 0;
-	if (!s1 || !set)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	int		i;
+	int		len;
+	char	*str;
+
+	i = 0;
+	len = ft_strlen(s);
+	str = (char *) malloc(sizeof(char) * len + 1);
+	if (!str)
 		return (NULL);
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	while (ft_strchr(set, s1[end]))
-		end--;
-	return (ft_substr(s1, start, end - start + 1));
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 /*
 #include <stdio.h>
 int	main(int argc, char **argv)
 {
-	printf("%s", ft_strtrim(argv[1], argv[2]));
+	printf("%s", ft_strmapi(argv[1], ft_encrypt));
 }*/
