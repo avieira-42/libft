@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 12:41:32 by jesusoncrac       #+#    #+#             */
-/*   Updated: 2025/04/15 15:22:13 by jesusoncrac      ###   ########.fr       */
+/*   Created: 2025/04/16 14:11:18 by avieira-          #+#    #+#             */
+/*   Updated: 2025/04/16 14:11:22 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-	while (ft_strchr(set, s1[end]))
+	while (end > start && ft_strchr(set, s1[end]))
 		end--;
 	return (ft_substr(s1, start, end - start + 1));
 }
