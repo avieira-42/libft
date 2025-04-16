@@ -5,7 +5,7 @@ OBJS = ${SRCS:.c=.o}
 BONUS = ft_lstnew_bonus.c ft_lstdelone_bonus.c ft_lstadd_front_bonus.c ft_lst_last_bonus.c
 B_OBJS = ${BONUS:.c=.o}
 
-all: ${NAME} bonus
+all: ${NAME}
 
 re: fclean all
 
@@ -13,21 +13,16 @@ bonus: ${OBJS} ${B_OBJS}
 		ar rc ${NAME} ${OBJS} ${B_OBJS}
 
 ${B_OBJS}: ${BONUS}
-		@echo "creating ${B_OBJS}"
 		cc ${CFLAGS} -c ${BONUS}
 
 $(NAME): ${OBJS}
-		@echo "creating ${NAME}"
 		ar rc ${NAME} ${OBJS}
 
 $(OBJS): ${SRCS}
-		@echo "creating object files"
 		cc ${CFLAGS} -c ${SRCS}
 
 fclean: clean
-		@echo "removing ${OBJS} ${B_OBJS} ${NAME}"
-		rm ${NAME}
+		rm -f ${NAME}
 
 clean: 
-		@echo "removing ${OBJS}"
-		rm ${OBJS} ${B_OBJS}
+		rm -f ${OBJS} ${B_OBJS}

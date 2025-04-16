@@ -6,7 +6,7 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:11:01 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/16 15:03:55 by avieira-         ###   ########.fr       */
+/*   Updated: 2025/04/16 19:32:11 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,41 @@ static void	ft_freearray(char **array)
 	free(array);
 }
 
-char	**ft_split(char const *s, char c)
+static void	ft_stringa_mos(char **array, char const *s, char c, int words)
 {
 	int		i;
 	int		start;
 	int		len;
-	int		words;
-	char	**array;
 
 	i = 0;
 	start = 0;
-	if (!s)
-		return (NULL);
-	words = ft_countwords(s, c);
-	array = (char **) malloc(sizeof(char *) * (words + 1));
-	if (!array)
-		return (NULL);
-	while (i < words)
+	while (words--)
 	{
 		len = 0;
-		while ((s[start]) == c && s[start + len])
+		while (s[start] == c && s[start + len])
 			start++;
-		while ((s[start + len]) != c && s[start + len])
+		while (s[start + len] != c && s[start + len])
 			len++;
 		array[i] = ft_substr(s, start, len);
-		if (array == NULL)
+		if (array[i] == NULL)
 			ft_freearray(array);
 		start += len + 1;
 		i++;
 	}
-	array[i] = NULL;
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int		words;
+	char	**array;
+
+	if (!s)
+		return (NULL);
+	words = ft_countwords(s, c);
+	array = (char **)ft_calloc(words + 1, sizeof(char *));
+	if (!array)
+		return (NULL);
+	ft_stringa_mos(array, s, c, words);
 	return (array);
 }
 /*
