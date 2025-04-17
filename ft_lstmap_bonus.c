@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_last_bonus.c                                :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 00:48:11 by jesusoncrac       #+#    #+#             */
-/*   Updated: 2025/04/17 01:03:26 by jesusoncrac      ###   ########.fr       */
+/*   Created: 2025/04/17 02:36:09 by jesusoncrac       #+#    #+#             */
+/*   Updated: 2025/04/17 03:01:59 by jesusoncrac      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	while (lst && lst->next)
-		lst = lst->next;
-	return (lst);
-}
-/*
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	int		i;
-	t_list	**list;
 
-	i = 1;
-	list = malloc(sizeof(t_lst) * (argc - 1));
-	if (list = NULL)
-		return (NULL);
-	while (i < argc)
-	{
-		if (i = 1)
-			*lst = ft_lstnew(argv[i]);
-		else
-			ft_lstadd_back(lst, *(lst++);
-		i++;
-	}
-}*/
+}
