@@ -6,7 +6,7 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:34:15 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/14 17:49:05 by avieira-         ###   ########.fr       */
+/*   Updated: 2025/04/17 19:01:23 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
+	if (size && nmemb > SIZE_MAX / size)
+		return (NULL);
 	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
-		return (0);
+	if (!ptr)
+		return (NULL);
 	ft_bzero(ptr, nmemb * size);
 	return (ptr);
 }

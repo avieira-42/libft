@@ -6,23 +6,20 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 21:22:37 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/11 10:49:21 by avieira-         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:03:03 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strchr(const char *s, int c)
 {
-	char	*ptr;
-
-	ptr = (char *) s;
-	while (*ptr)
+	while (*s)
 	{
-		if (*ptr == c)
-			return (ptr);
-		ptr++;
+		if (*s == (unsigned char) c)
+			return ((char *) s);
+		s++;
 	}
-	if (*ptr == c)
-		return (ptr);
+	if (*s == (unsigned char) c)
+		return ((char *) s);
 	return (0);
 }
 

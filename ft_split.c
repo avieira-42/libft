@@ -6,7 +6,7 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:11:01 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/16 19:32:11 by avieira-         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:51:56 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,21 @@ static int	ft_countwords(char const *s, char c)
 	return (word);
 }
 
-static void	ft_freearray(char **array)
+static char	**ft_freearray(char **array, int i)
 {
-	while (*array)
-		free(*(array++));
+	int	j;
+
+	j = 0;
+	while (j < i)
+	{
+		free(array[j]);
+		j++;
+	}
 	free(array);
+	return (NULL);
 }
 
-static void	ft_stringa_mos(char **array, char const *s, char c, int words)
+static char	**ft_stringa_mos(char **array, char const *s, char c, int words)
 {
 	int		i;
 	int		start;
@@ -51,11 +58,13 @@ static void	ft_stringa_mos(char **array, char const *s, char c, int words)
 		while (s[start + len] != c && s[start + len])
 			len++;
 		array[i] = ft_substr(s, start, len);
-		if (array[i] == NULL)
-			ft_freearray(array);
+		if (!array[i])
+			return (ft_freearray(array, i));
 		start += len + 1;
 		i++;
 	}
+	array[i] = NULL;
+	return (array);
 }
 
 char	**ft_split(char const *s, char c)
@@ -66,11 +75,10 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words = ft_countwords(s, c);
-	array = (char **)ft_calloc(words + 1, sizeof(char *));
+	array = (char **) malloc(sizeof(char *) * (words + 1));
 	if (!array)
 		return (NULL);
-	ft_stringa_mos(array, s, c, words);
-	return (array);
+	return (ft_stringa_mos(array, s, c, words));
 }
 /*
 #include <stdio.h>
@@ -81,5 +89,5 @@ int	main(int argc, char **argv)
 
 	array = ft_split(argv[1], argv[2][0]);
 	while (*array)
-		printf("%s", *array++);
+		printf("%s\n", *array++);
 }*/

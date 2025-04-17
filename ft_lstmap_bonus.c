@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 18:52:15 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/17 16:26:09 by avieira-         ###   ########.fr       */
+/*   Created: 2025/04/17 19:10:35 by avieira-          #+#    #+#             */
+/*   Updated: 2025/04/17 20:18:35 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
-	size_t	s_len;
-	char	*substr;
+	t_list	*lsd;
+	t_list	*tmp;
+	void	*pqvp;
 
-	i = 0;
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		return (ft_strdup(""));
-	if (len + start > s_len)
-		len = s_len - start;
-	substr = malloc (sizeof(char) * (len + 1));
-	if (!substr)
-		return (NULL);
-	while (i < len)
+	lsd = NULL;
+	while (lst)
 	{
-		substr[i] = s[start + i];
-		i++;
+		pqvp = f(lst->content);
+		tmp = ft_lstnew(pqvp);
+		if (!tmp)
+		{
+			free(pqvp);
+			ft_lstclear(&lsd, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&lsd, tmp);
+		lst = lst->next;
 	}
-	substr[i] = '\0';
-	return (substr);
+	return (lsd);
 }
