@@ -6,7 +6,7 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:11:01 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/19 02:12:25 by jesusoncrac      ###   ########.fr       */
+/*   Updated: 2025/04/19 14:06:19 by jesusoncrac      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,66 +28,72 @@ static int	ft_countwords(char const *s, char c)
 	return (word);
 }
 
-static char	**ft_freearray(char **array, int i)
+static char	**ft_clear(char **split, int i)
 {
 	int	j;
 
 	j = 0;
 	while (j < i)
 	{
-		free(array[j]);
+		free(split[j]);
 		j++;
 	}
-	free(array);
+	free(split);
 	return (NULL);
 }
 
-static char	**ft_stringa_mos(char **array, char const *s, char c, int words)
+static char	**ft_populate(char **split, char const *s, char sep, int words)
 {
 	int		i;
-	int		start;
 	int		len;
+	int		start;
 
 	i = 0;
 	start = 0;
 	while (words--)
 	{
 		len = 0;
-		while (s[start] == c && s[start + len])
+		while (s[start] == sep && s[start])
 			start++;
-		while (s[start + len] != c && s[start + len])
+		while (s[start + len] != sep && s[start + len])
 			len++;
-		array[i] = ft_substr(s, start, len);
-		if (!array[i])
-			return (ft_freearray(array, i));
+		split[i] = ft_substr(s, start, len);
+		if (!split[i])
+			return (ft_clear(split, i));
 		start += len + 1;
 		i++;
 	}
-	array[i] = NULL;
-	return (array);
+	split[i] = (NULL);
+	return (split);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	int		words;
-	char	**array;
+	char	**split;
 
 	if (!s)
 		return (NULL);
 	words = ft_countwords(s, c);
-	array = (char **) malloc(sizeof(char *) * (words + 1));
-	if (!array)
+	split = (char **) malloc(sizeof(char *) * (words + 1));
+	if (!split)
 		return (NULL);
-	return (ft_stringa_mos(array, s, c, words));
+	return (ft_populate(split, s, c, words));
 }
 /*
 #include <stdio.h>
 int	main(int argc, char **argv)
 {
+	int	i;
 	(void) argc;
-	char	**array;
+	char	**split;
 
-	array = ft_split(argv[1], argv[2][0]);
-	while (*array)
-		printf("%s\n", *array++);
+	i = 0;
+	split = ft_split(argv[1], argv[2][0]);
+	while (split[i])
+	{
+		printf("%s\n", split[i]);
+		i++;
+	}
+	ft_clear(split, ft_countwords(argv[1], argv[2][0]));
 }*/

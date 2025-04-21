@@ -6,7 +6,7 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:05:23 by jesusoncrac       #+#    #+#             */
-/*   Updated: 2025/04/17 01:34:52 by jesusoncrac      ###   ########.fr       */
+/*   Updated: 2025/04/21 00:23:28 by jesusoncrac      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,28 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 			*lst = new;
 	}
 }
+/*
+#include <stdio.h>
+int	main(int argc, char **argv)
+{
+	int		i;
+	(void)	argc;
+	t_list	*lst;
+	t_list	*node;
+
+	i = 1;
+	lst = NULL;
+	while (i < argc)
+	{
+		node = ft_lstnew(argv[i]);
+		ft_lstadd_back(&lst, node);
+		i++;
+		node = node->next;
+	}
+	node = NULL;
+	while (lst)
+	{
+		printf("%s ", (char *) lst->content);
+		lst = lst->next;
+	}
+}*/
