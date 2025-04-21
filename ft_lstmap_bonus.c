@@ -6,7 +6,7 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 19:10:35 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/21 11:38:33 by jesusoncrac      ###   ########.fr       */
+/*   Updated: 2025/04/21 12:55:49 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	while (i < argc)
 	{
 		node = ft_lstnew(argv[i]);
-		if (lst == NULL)
+		if (!lst)
 			lst = node;
 		else
 			ft_lstadd_back(&lst, node);
