@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_dblylst_clear.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 19:23:19 by jesusoncrac       #+#    #+#             */
-/*   Updated: 2025/06/20 21:00:03 by avieira-         ###   ########.fr       */
+/*   Created: 2025/06/21 15:18:37 by avieira-          #+#    #+#             */
+/*   Updated: 2025/06/24 13:47:28 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_found_newline(char *line)
+void	ft_dblylst_clear(t_dblylst *dblylst)
 {
-	int	i;
+	t_dblylst	*tmp;
+	t_dblylst	*dblylst_ptr;
 
-	i = 0;
-	while (line && line[i])
-		if (line[i++] == '\n')
-			return (1);
-	return (0);
-}
-
-int	ft_nlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i] && str[i] != '\n')
-		i++;
-	if (str && str[i] == '\n')
-		i++;
-	return (i);
+	dblylst_ptr = dblylst;
+	while (dblylst && dblylst_ptr->next != dblylst)
+	{
+		tmp = dblylst_ptr->next;
+		free(dblylst_ptr->content);
+		free(dblylst_ptr);
+		dblylst_ptr = tmp;
+	}
+	tmp = dblylst_ptr->next;
+	free(dblylst_ptr->content);
+	free(dblylst_ptr);
+	dblylst_ptr = tmp;
 }

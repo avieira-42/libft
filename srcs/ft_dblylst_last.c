@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_dblylst_last.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 19:23:19 by jesusoncrac       #+#    #+#             */
-/*   Updated: 2025/06/20 21:00:03 by avieira-         ###   ########.fr       */
+/*   Created: 2025/06/20 13:46:59 by a-soeiro          #+#    #+#             */
+/*   Updated: 2025/06/21 15:39:08 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_found_newline(char *line)
+t_dblylst	*ft_dblylst_last(t_dblylst *dblylst)
 {
-	int	i;
+	t_dblylst	*dblylst_iter;
 
-	i = 0;
-	while (line && line[i])
-		if (line[i++] == '\n')
-			return (1);
-	return (0);
-}
-
-int	ft_nlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i] && str[i] != '\n')
-		i++;
-	if (str && str[i] == '\n')
-		i++;
-	return (i);
+	dblylst_iter = dblylst;
+	while (dblylst_iter->next != dblylst)
+		dblylst_iter = dblylst_iter->next;
+	return (dblylst_iter);
 }
