@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avieira- <avieira-@student.42porto.com     +#+  +:+       +#+        */
+/*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 22:16:07 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/08 23:11:37 by avieira-         ###   ########.fr       */
+/*   Created: 2025/09/22 23:40:51 by avieira-          #+#    #+#             */
+/*   Updated: 2025/09/22 23:43:26 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/libft.h"
+
+/*
+EXAMPLE:
+	1111 1111 1111 1000 0000 => ~0x7F
+	0000 0000 0000 0010 1010 => 40
+*/
+
 int	ft_isascii(int c)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	return (!(c & ~0x7F));
 }
