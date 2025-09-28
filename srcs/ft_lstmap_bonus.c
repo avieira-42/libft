@@ -6,7 +6,7 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 19:10:35 by avieira-          #+#    #+#             */
-/*   Updated: 2025/04/21 12:55:49 by avieira-         ###   ########.fr       */
+/*   Updated: 2025/09/25 00:45:58 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	void	*tmp;
-	t_list	*new;
+	t_list	*new_node;
 	t_list	*node;
 
 	if (!f || !del)
@@ -24,14 +24,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst)
 	{
 		tmp = f(lst->content);
-		new = ft_lstnew(tmp);
-		if (!new)
+		new_node = ft_lstnew(tmp);
+		if (!new_node)
 		{
 			free(tmp);
 			ft_lstclear(&node, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&node, new);
+		ft_lstadd_back(&node, new_node);
 		lst = lst->next;
 	}
 	return (node);
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 	(void)	argc;
 	t_list	*lst;
 	t_list	*node;
-	t_list	*new_list;
+	t_list	new_node_list;
 
 	i = 1;
 	lst = NULL;

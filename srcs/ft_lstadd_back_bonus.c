@@ -6,20 +6,20 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:05:23 by jesusoncrac       #+#    #+#             */
-/*   Updated: 2025/04/21 00:23:28 by jesusoncrac      ###   ########.fr       */
+/*   Updated: 2025/09/25 00:44:27 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new_node)
 {
-	if (new)
+	if (new_node)
 	{
 		if (*lst)
-			ft_lstlast(*lst)->next = new;
+			ft_lstlast(*lst)->next = new_node;
 		else
-			*lst = new;
+			*lst = new_node;
 	}
 }
 /*

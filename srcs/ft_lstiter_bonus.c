@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	int		i;
 	(void)	argc;
 	t_list	*lst;
-	t_list	*new;
+	t_list	new_node;
 	t_list	*node;
 
 	i = 1;

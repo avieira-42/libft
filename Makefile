@@ -6,7 +6,7 @@
 #    By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 12:18:39 by avieira-          #+#    #+#              #
-#    Updated: 2025/09/22 23:42:43 by avieira-         ###   ########.fr        #
+#    Updated: 2025/09/26 13:39:33 by avieira-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS += srcs/ft_strlcat.c srcs/ft_itoa.c srcs/ft_strdup.c srcs/ft_strncmp.c
 SRCS += srcs/ft_memcmp.c srcs/ft_calloc.c srcs/ft_substr.c srcs/ft_strjoin.c
 SRCS += srcs/ft_strmapi.c srcs/ft_striteri.c srcs/ft_putchar_fd.c 
 SRCS += srcs/ft_putstr_fd.c srcs/ft_toupper.c srcs/ft_strlcpy.c srcs/ft_memchr.c
-SRCS += srcs/ft_putnbr_fd.c srcs/ft_printf.c srcs/ft_printadd.c srcs/ft_isascii.c
+SRCS += srcs/ft_putnbr_fd.c srcs/ft_printf.c srcs/ft_printadd.c
 SRCS += srcs/ft_printchar.c srcs/ft_printhex.c srcs/ft_printnbr.c
 SRCS += srcs/ft_printunsign_nbr.c srcs/ft_printstr.c srcs/ft_issign.c
 SRCS += srcs/ft_free_matrix.c srcs/i_merge_sort.c srcs/ft_atol.c
@@ -34,18 +34,39 @@ SRCS += srcs/ft_dblylst_size.c srcs/ft_is_int.c srcs/ft_bool_strcmp.c
 SRCS += srcs/get_next_line.c srcs/get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
 
+.PHONY: all clean fclean re
+
+# Default target
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		ar rcs $(NAME) $(OBJS)
+# Build library with live progress bar
+$(NAME):
+	@total=$(words $(SRCS)); \
+	current=0; \
+	bar_length=30; \
+	for f in $(SRCS); do \
+		current=$$((current+1)); \
+		percent=$$((current*100/total)); \
+		filled=$$((bar_length*current/total)); \
+		empty=$$((bar_length-filled)); \
+		bar="$$(printf '%0.s#' $$(seq 1 $$filled))$$(printf '%0.s-' $$(seq 1 $$empty))"; \
+		printf "Compiling libft binaries [%s] %3d%% \r" "$$bar" $$percent; \
+		cc $(CFLAGS) -c $$f -o $${f%.c}.o; \
+	done; \
+	echo ""; \
+	ar rcs $(NAME) $(OBJS); \
 
-%.o: %.c 
-		cc $(CFLAGS) -c $^ -o $@
+# Clean object files
+clean:
+	@printf "Removing libft binaries... "
+	@rm -f $(OBJS)
+	@echo "Done"
 
-clean: 
-		rm -f $(OBJS)
-
+# Clean objects and library
 fclean: clean
-		rm -f $(NAME)
+	@printf "Removing libft executable... "
+	@rm -f $(NAME)
+	@echo "Done"
 
+# Rebuild everything
 re: fclean all
