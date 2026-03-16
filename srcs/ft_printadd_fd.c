@@ -1,49 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_printadd_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 15:06:26 by avieira-          #+#    #+#             */
-/*   Updated: 2025/11/03 16:13:13 by avieira-         ###   ########.fr       */
+/*   Created: 2025/04/24 19:47:36 by avieira-          #+#    #+#             */
+/*   Updated: 2025/10/02 14:51:02 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_printadd_fd(void *ptr, int fd)
 {
-	size_t				i;
-	unsigned char		*d;
-	const unsigned char	*s;
+	unsigned long int	add;
 
-	i = 0;
-	s = (unsigned char *) src;
-	d = (unsigned char *) dest;
-	if (dest == NULL && src == NULL)
-		return (0);
-	while (i < n)
-	{
-		d[i] = s[i];
-		i++;
-	}
-	return (dest);
+	if (!ptr)
+		return (ft_printstr_fd("(nil)", fd));
+	add = (unsigned long int) ptr;
+	return (ft_printstr_fd("0x", fd) + ft_printhex_fd(add, 'x', fd));
 }
 /*
 #include <stdio.h>
 int	main(void)
 {
-	int	i = 0;
-	size_t n;
-	unsigned int		src[] = {16, 4, 21};
-	unsigned int		dest[10];
-	
-	n = sizeof(int) * 3;
-	ft_memcpy(dest, src, n);
-	while (i < 3)
-	{	
-		printf("%i\n", dest[i]);
-		i++;
-	}
+	int		a;
+	int		*ptr1;
+	char	*ptr2;
+
+	a = 1;
+	ptr1 = &a;
+	ptr2 = "ola";
+	printf("%i, %i\n", printf("%p", ptr1), printf("%p", ptr2));
+	printf("%i, %i", ft_printadd(ptr1), ft_printadd(ptr2));
 }*/

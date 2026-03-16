@@ -6,7 +6,7 @@
 /*   By: avieira- <avieira-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:40:52 by avieira-          #+#    #+#             */
-/*   Updated: 2025/09/26 14:10:14 by avieira-         ###   ########.fr       */
+/*   Updated: 2026/03/16 22:31:32 by avieira-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdint.h>
 # include <stdarg.h>
 # include <fcntl.h>
+# include <stdbool.h>
+# include <stdio.h>
 
 # define TRUE 1
 # define FALSE 0
@@ -29,12 +31,11 @@
 
 typedef int	t_bool;
 
-typedef struct s_array
+typedef struct s_str_array
 {
-	int				*i_array;
-	char			*c_array;
-	int				length;
-}	t_array;
+	char			**m_array;
+	size_t			length;
+}	t_str_array;
 
 typedef struct s_list
 {
@@ -63,6 +64,16 @@ int			ft_printhex(unsigned long nbr, char c);
 int			ft_printadd(void *ptr);
 int			ft_printf(const char *format, ...);
 
+/* FT_PRINTF_FD */
+
+int			ft_printchar_fd(char c, int fd);
+int			ft_printstr_fd(char *str, int fd);
+int			ft_printnbr_fd(int nbr, int fd);
+int			ft_printunsign_nbr_fd(unsigned int nbr, int fd);
+int			ft_printhex_fd(unsigned long nbr, char c, int fd);
+int			ft_printadd_fd(void *ptr, int fd);
+int			ft_printf_fd(int fd, const char *format, ...);
+
 /* GET_NEXT_LINE */
 
 int			ft_found_newline(char *line);
@@ -73,8 +84,8 @@ void		ft_removeline(char *buf);
 
 /* SORTING */
 
-void		i_merge_sort(t_array middle);
-void		i_merge(t_array left, t_array middle, t_array right);
+void		str_merge_sort(t_str_array middle, int *ret);
+void		str_merge(t_str_array left, t_str_array middle, t_str_array right);
 
 /* MEMORY */
 void		ft_free_matrix(char **matrix);
@@ -84,6 +95,7 @@ void		*ft_memmove(void *dest, const void *src, size_t n);
 void		*ft_memchr(const void *s, int c, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		ft_bzero(void *s, size_t n);
+void		*ft_realloc(void *old_ptr, size_t size, size_t old);
 
 /* STRING MANIPULATION */
 
@@ -98,6 +110,7 @@ char		**ft_split(char const *s, char c);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
+char		get_normalized_char(char *s);
 
 /* CONVERSION */
 
@@ -123,6 +136,7 @@ char		*ft_strrchr(const char *s, int c);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
 size_t		ft_strlen(const char *s);
 t_bool		ft_bool_strcmp(char *string_1, char *string_2);
+bool		ft_bool_strncmp(char *string_1, char *string_2, int n);
 
 /* FILE DESCRIPTING */
 
